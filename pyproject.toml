@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "ai-mentoring"
+version = "0.1.0"
+description = ""
+authors = ["Junior N'nane <junior.nnane@gmail.com>"]
+readme = "README.md"
+packages = [{include = "ai_mentoring"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pandas = "^2.0.3"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.4.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
