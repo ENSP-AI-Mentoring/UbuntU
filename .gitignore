@@ -134,7 +134,7 @@ venv.bak/
 
 
 # SECRETS
-
+credentials.json
 list_excluded_member_emails.txt 
 list_member_emails.txt
 
