@@ -23,7 +23,7 @@ def load_email_list(file_path):
         raise Exception(f"Error loading email list: {e}")
 
 
-def exclude_emails(email_list, excluded_emails):
+def set_emails_probabilities(email_list, excluded_emails):
     email_list_usable = [email for email in email_list if email not in excluded_emails]
     n = len(email_list_usable)
     print(f"There are {n} usable candidates out of {len(email_list)} total.")
@@ -68,7 +68,7 @@ def main():
         #print([mask_email(email) for email in excluded_emails])
         print(excluded_emails)
 
-        email_weights = exclude_emails(email_list, excluded_emails)
+        email_weights = set_emails_probabilities(email_list, excluded_emails)
 
         # Sample three emails randomly based on the weights
         num_emails_to_select = 3
