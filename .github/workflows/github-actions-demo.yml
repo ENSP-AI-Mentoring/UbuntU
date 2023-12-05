@@ -8,7 +8,7 @@ jobs:
     name: Create team sync issue
     runs-on: ubuntu-latest
     permissions:
-      issues: write
+      issues: write 
     steps:
       - name: Create team sync issue
         run: |
