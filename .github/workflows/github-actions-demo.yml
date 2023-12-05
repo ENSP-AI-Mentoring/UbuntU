@@ -1,52 +1,16 @@
-name: Weekly Team Sync
-on:
+name: Experiment
+on: 
   schedule:
-    - cron: "*/5 * * * *"
+  - cron: '*/5 * * * *'
 
 jobs:
-  create_issue:
-    name: Create team sync issue
+  job1:
+    name: Debug
     runs-on: ubuntu-latest
-    permissions:
-      issues: write 
+
     steps:
-      - name: Create team sync issue
-        run: |
-          if [[ $CLOSE_PREVIOUS == true ]]; then
-            previous_issue_number=$(gh issue list \
-              --label "$LABELS" \
-              --json number \
-              --jq '.[0].number')
-            if [[ -n $previous_issue_number ]]; then
-              gh issue close "$previous_issue_number"
-              gh issue unpin "$previous_issue_number"
-            fi
-          fi
-          new_issue_url=$(gh issue create \
-            --title "$TITLE" \
-            --assignee "$ASSIGNEES" \
-            --label "$LABELS" \
-            --body "$BODY")
-          if [[ $PINNED == true ]]; then
-            gh issue pin "$new_issue_url"
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GTB_TOKEN }}
-          GH_REPO: ${{ github.repository }}
-          TITLE: Team sync
-          ASSIGNEES: monalisa,doctocat,hubot
-          LABELS: weekly sync,docs-team
-          BODY: |
-            ### Agenda
-
-            - [ ] Start the recording
-            - [ ] Check-ins
-            - [ ] Discussion points
-            - [ ] Post the recording
-
-            ### Discussion Points
-            Add things to discuss below
-
-            - [Work this week](https://github.com/orgs/github/projects/3)
-          PINNED: false
-          CLOSE_PREVIOUS: false 
+    - name: Git checkout
+      uses: actions/checkout@v2
+      with: { ref: debug }
+    - name: List files
+      run: ls
