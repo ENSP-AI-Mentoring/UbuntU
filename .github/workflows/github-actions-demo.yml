@@ -15,8 +15,7 @@ jobs:
     - name: List files
       run: ls
     - name: Create team sync issue
-        run: |
-          if [[ $CLOSE_PREVIOUS == true ]]; then
+        run: if [[ $CLOSE_PREVIOUS == true ]]; then
             previous_issue_number=$(gh issue list \
               --label "$LABELS" \
               --json number \
