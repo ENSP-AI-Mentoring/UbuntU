@@ -12,10 +12,11 @@ jobs:
     # - name: Git checkout
     #   uses: actions/checkout@v2
     #   with: { ref: debug }
+    # --label "$LABELS"
     - name: List files
       run: ls
     - name: Create team sync issue
-      run: gh issue create --title "$TITLE" --assignee "$ASSIGNEES" --label "$LABELS" --body "$BODY"
+      run: gh issue create --title "$TITLE" --assignee "$ASSIGNEES"  --body "$BODY"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_REPO: ${{ github.repository }}
