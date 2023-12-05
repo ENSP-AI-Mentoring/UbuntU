@@ -24,16 +24,14 @@ jobs:
         ASSIGNEES: hafro05,nprime496
         LABELS: weekly sync,docs-team
         BODY: |
-          ### Agenda
+          Hello @hafro05,
 
-          - [ ] Start the recording
-          - [ ] Check-ins
-          - [ ] Discussion points
-          - [ ] Post the recording
-
-          ### Discussion Points
-          Add things to discuss below
-
-          - [Work this week](https://github.com/orgs/github/projects/3)
+          I hope this message finds you well! I wanted to extend an invitation your way. You've been selected to present either in an upcoming meeting or contribute an article for our group. We greatly value your expertise and would love to hear your thoughts on a subject you're passionate about.
+          
+          Would you kindly propose a topic that resonates with you and let us know if you'd prefer to present it in a meeting or as an article? Your input will be highly appreciated, and we're looking forward to learning from your insights.
+          
+          Thank you in advance for your contribution!
+          
+          Best regards
         PINNED: false
         CLOSE_PREVIOUS: false
