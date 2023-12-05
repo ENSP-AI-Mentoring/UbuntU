@@ -15,11 +15,7 @@ jobs:
     - name: List files
       run: ls
     - name: Create team sync issue
-      run: new_issue_url=$(gh issue create \
-          --title "$TITLE" \
-          --assignee "$ASSIGNEES" \
-          --label "$LABELS" \
-          --body "$BODY")
+      run: gh issue create --title "$TITLE" --assignee "$ASSIGNEES" --label "$LABELS" --body "$BODY"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_REPO: ${{ github.repository }}
