@@ -2,15 +2,51 @@ import random
 import numpy as np
 import pandas as pd  # type:ignore
 from typing import List, Dict
+import re
+from datetime import date, datetime, timedelta
+import os
 
 
-# Set the seed value based on a specific date
-seed_date = "2023-07-15"  # Use the desired date
-salt = 300
+def convert_google_sheet_url(url):
+    """
+        Function to convert Google Sheets URL into a CSV export URL
+    """
+    # Regular expression to match and capture the necessary part of the URL
+    pattern = r'https://docs\.google\.com/spreadsheets/d/([a-zA-Z0-9-_]+)(/edit#gid=(\d+)|/edit.*)?'
 
-seed = int(seed_date.replace("-", ""))
-random.seed(seed + salt)
-np.random.seed(seed + salt)
+    # Replace function to construct the new URL for CSV export
+    # If gid is present in the URL, it includes it in the export URL, otherwise, it's omitted
+    replacement = lambda m: f'https://docs.google.com/spreadsheets/d/{m.group(1)}/export?' + (f'gid={m.group(3)}&' if m.group(3) else '') + 'format=csv'
+
+    # Replace using regex
+    new_url = re.sub(pattern, replacement, url)
+
+    return new_url
+
+
+def fetch_data(url, columns):
+    """
+        Function to fetch the information of the members
+
+        Args:
+        - url (str): CSV export URL of the Google Sheet containing the information to fetch
+        - columns (List of str): list containing the columns of the Google Sheet to return
+
+        Returns:
+        - DataFrame containing the columns specified in argument
+
+        Raises:
+        - Exception: For any other unexpected errors during file reading.
+    """
+    new_url = convert_google_sheet_url(url)
+
+    #read the data
+    try:
+        df = pd.read_csv(new_url)
+        return df[columns].dropna()
+    except Exception as e:
+        print(f"Error when fetching the data: {e}")
+        return None
 
 
 def load_email_list(file_path: str) -> List[str]:
@@ -121,38 +157,58 @@ def main() -> None:
     """
     main method.
     """
-    try:
-        # Get the list of emails
-        email_list = load_email_list("list_member_emails.txt")
-        excluded_emails = load_email_list("list_excluded_member_emails.txt")
+    # Set the seed value based on a specific date
+    seed_date = "2023-07-15"  # Use the desired date
+    salt = 300
 
-        # Shuffle the email list based on the seed value
-        random.shuffle(email_list)
+    seed = int(datetime.now().timestamp())
+    random.seed(seed + salt)
+    np.random.seed(seed + salt)
 
-        # Number of emails to exclude from sampling
-        n_excluded_emails = 5  # Set the desired number of emails to exclude
+    DELAY = 0.2 # Number of months after which we are included in the draw again afer a participation
+    ACTIVITIES = ["presentation"] # ["presentation", "article"]
+    NB_OF_MEMBERS_TO_DRAW = 3
 
-        # Assign a weight of 0 to the last n excluded emails
-        print("Excluded emails are:")
-        # print([mask_email(email) for email in excluded_emails])
-        print(excluded_emails)
+    # Get the information of the members
+    # Raw URL of the Google Sheet containing the information of the members
+    members_sheet_url = "https://docs.google.com/spreadsheets/d/12iwGURrqjezAuqI96fv16skKExkFY5WBloX-2iIKL5g/edit#gid=0"
+    personal_info_columns = ["emails", "github username"]
 
-        email_weights = set_emails_probabilities(email_list, excluded_emails)
+    participation_colmun_from_activity = lambda activity : f"{activity}_last_participation"
+    activity_drawable_column = lambda activity : f"{activity}_drawable"
 
-        # Sample three emails randomly based on the weights
-        num_emails_to_select = 3
-        random_emails = select_random_emails(
-            email_list, list(email_weights.values()), num_emails_to_select
-        )
+    participation_columns = [participation_colmun_from_activity(activity) for activity in ACTIVITIES]
 
-        # Print the randomly chosen emails
-        print("Randomly", num_emails_to_select, "chosen emails:")
-        for email in random_emails:
-            print(email)
+    data = fetch_data(members_sheet_url, personal_info_columns+participation_columns)
 
-    except Exception as e:
-        print(f"Error: {e}")
+    if data is not None: # Fetching the data succeeded
+        for activity in ACTIVITIES:
+            #create  a column to indicate if we can draw each person or not for the activity
+            data[activity_drawable_column(activity)] = data[participation_colmun_from_activity(activity)].apply(lambda x: (datetime.now() - datetime.strptime(x, "%d/%m/%Y")) >= timedelta(days=DELAY*30))
 
+            candidates_df = data[data[activity_drawable_column(activity)] == True]
 
+            email_list = candidates_df["emails"].values
+
+            # Shuffle the email list based on the seed value
+            random.shuffle(email_list)
+
+            # Choose the mails
+            if len(email_list) > NB_OF_MEMBERS_TO_DRAW:
+                choosed_emails = (np.random.choice(a=email_list, size=NB_OF_MEMBERS_TO_DRAW, replace=False)).tolist()
+            else:
+                choosed_emails = email_list
+
+            # Get the associated github usernames of the selected emails
+            selected_members = data[data["emails"].isin(choosed_emails)]
+            selected_members_gh_usernames = selected_members["github username"].values
+
+            # Write the selected usernames in the GITHUB_ENV environment
+            env_file = os.getenv('GITHUB_ENV')
+        
+            with open(env_file, 'a') as file:
+                for i, username in enumerate(selected_members_gh_usernames, start=1):
+                    file.write(f"user{i}={username}\n")
+                
 if __name__ == "__main__":
     main()
