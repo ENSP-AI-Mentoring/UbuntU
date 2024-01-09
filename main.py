@@ -167,7 +167,7 @@ def main() -> None:
 
     DELAY = 0.2 # Number of months after which we are included in the draw again afer a participation
     ACTIVITIES = ["presentation"] # ["presentation", "article"]
-    NB_OF_MEMBERS_TO_DRAW = 3
+    NB_OF_MEMBERS_TO_DRAW = 1
 
     # Get the information of the members
     # Raw URL of the Google Sheet containing the information of the members
