@@ -17,12 +17,13 @@ jobs:
         python-version: '3.8'
     - run: pip install numpy pandas python-dotenv argparse
     - run: python main.py
+      env:
+        MEMBERS_SHEET_URL: ${{ secrets.MEMBERS_SHEET_URL }}
     - name: Create team sync issue
       run: gh issue create --title "$TITLE" --assignee "$ASSIGNEES"  --body "$BODY"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_REPO: ${{ github.repository }}
-        MEMBERS_SHEET_URL: ${{secrets.MEMBERS_SHEET_URL }}
         TITLE: Team sync
         ASSIGNEES: hafro05,nprime496
         LABELS: weekly sync,docs-team
