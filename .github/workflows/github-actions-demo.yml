@@ -1,7 +1,7 @@
-name: Experiment
+name: Member selection
 on: 
   schedule:
-  - cron: '5 * * * *'
+  - cron: ' * * * *'
 
 jobs:
   job1:
