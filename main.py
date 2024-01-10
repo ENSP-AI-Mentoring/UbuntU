@@ -6,7 +6,7 @@ import re
 from datetime import datetime, timedelta
 import os
 
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 import logging
 import tempfile
 import argparse
@@ -15,7 +15,7 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-# load_dotenv()
+load_dotenv()
 
 
 def convert_google_sheet_url(url: str) -> str:
