@@ -24,7 +24,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_REPO: ${{ github.repository }}
-        TITLE: Selection Task
+        TITLE: "ENSPY AI : We Value Your Input"
         ASSIGNEES: hafro05,nprime496
         LABELS: weekly sync,docs-team
         BODY: |
