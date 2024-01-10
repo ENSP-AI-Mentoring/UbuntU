@@ -53,6 +53,8 @@ def fetch_data_from_url(url: str, columns: List[str]) -> Optional[pd.DataFrame]:
     Raises:
     - Exception: For any other unexpected errors during file reading.
     """
+
+    logging.info(url)
     new_url = convert_google_sheet_url(url)
 
     # read the data
