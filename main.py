@@ -288,7 +288,7 @@ if __name__ == "__main__":
         "--members_sheet_url",
         type=str,
         # required=True,
-        default=str(os.environ.get("MEMBERS_SHEET_URL")),
+        default=None,
         help="Google Sheet URL for member information",
     )
     parser.add_argument(
@@ -296,4 +296,8 @@ if __name__ == "__main__":
     )
 
     args = vars(parser.parse_args())  # Converts to  dict
+
+    if args["members_sheet_url"] is None:
+        args["members_sheet_url"] = str(os.environ.get("MEMBERS_SHEET_URL"))
+        logging.info(f"Defaulting to OS {args['members_sheet_url']}")
     main(args)
