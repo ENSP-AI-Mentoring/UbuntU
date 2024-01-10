@@ -1,7 +1,7 @@
 name: Pick_some_member
 on: 
   schedule:
-    - cron: '5 * * * *'
+    - cron: '42 10 * * mon'
   workflow_dispatch:
 
 
