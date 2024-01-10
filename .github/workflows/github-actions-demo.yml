@@ -24,19 +24,22 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_REPO: ${{ github.repository }}
-        TITLE: Team sync
+        TITLE: Selection Task
         ASSIGNEES: hafro05,nprime496
         LABELS: weekly sync,docs-team
         BODY: |
+          
           Hello @${{ env.user1 }},
 
-          I hope this message finds you well! I wanted to extend an invitation your way. You've been selected to present either in an upcoming meeting or contribute an article for our group. We greatly value your expertise and would love to hear your thoughts on a subject you're passionate about.
-          
-          Would you kindly propose a topic that resonates with you and let us know if you'd prefer to present it in a meeting or as an article? Your input will be highly appreciated, and we're looking forward to learning from your insights.
-          
-          Thank you in advance for your contribution!
-          
-          Best regards
+          We're pleased to announce that you've been selected for an exciting opportunity within our community! As a valued member, we invite you to share your expertise by choosing to either write an article this week or deliver a presentation on a topic of your interest.
+
+          Please let us know your preference and propose a topic at your earliest convenience. For more details, feel free to visit [url]. We eagerly anticipate your participation and the unique perspectives you'll bring to our community.
+
+          Thank you for being an integral part of our group's journey.
+
+          Best Regards,
+
+          @ENSP-AI-Mentoring
         PINNED: false
         CLOSE_PREVIOUS: false
 
