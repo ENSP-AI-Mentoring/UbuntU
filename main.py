@@ -171,7 +171,7 @@ def main() -> None:
 
     # Get the information of the members
     # Raw URL of the Google Sheet containing the information of the members
-    members_sheet_url = os.environ['MEMBERS_SHEET_URL']
+    members_sheet_url = os.environ.get('MEMBERS_SHEET_URL')
 
     personal_info_columns = ["emails", "github username"]
 
