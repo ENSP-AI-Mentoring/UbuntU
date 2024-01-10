@@ -1,6 +1,3 @@
-I've created a README for your codebase. Here it is:
-
----
 
 # Pick_some_member GitHub Actions
 
@@ -62,6 +59,4 @@ To use this GitHub Actions workflow for your project:
 
 Feel free to modify and extend this workflow to suit your project's requirements.
 
----
 
-Please note that this README provides an overview of the workflow and its components. You may need to provide additional documentation and context specific to your project and its use cases.
