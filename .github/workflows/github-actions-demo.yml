@@ -32,13 +32,15 @@ jobs:
           Hello @${{ env.user1 }},
 
           We're pleased to announce that you've been selected for an exciting opportunity within our community! As a valued member, we invite you to share your expertise by choosing to either write an article this week or deliver a presentation on a topic of your interest.
-
-          Please let us know your preference and propose a topic at your earliest convenience. For more details, feel free to visit [url]. We eagerly anticipate your participation and the unique perspectives you'll bring to our community.
-
-          Thank you for being an integral part of our group's journey.
-
+          
+          Please let us know your preference by responding in the comments below, including your availability, preferred activity, and the topic you'd like to share with us. We are eagerly looking forward to your participation and the unique insights you will contribute to our community.
+          
+          Thank you for being a vital part of our community's journey.
+          
+          For more information, please visit [url].
+          
           Best Regards,
-
+          
           @ENSP-AI-Mentoring
         PINNED: false
         CLOSE_PREVIOUS: false
