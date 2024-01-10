@@ -1,5 +1,5 @@
 
-# Pick_some_member GitHub Actions
+# Ubuntu
 
 This GitHub Actions workflow named "Pick_some_member" is designed to select random members for certain activities based on specified criteria. It runs automatically on a schedule and can also be triggered manually.
 
