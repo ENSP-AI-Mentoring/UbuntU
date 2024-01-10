@@ -1,4 +1,4 @@
-name: Member_selection
+name: Pick_some_member
 on: 
   schedule:
   - cron: '5 * * * *'
