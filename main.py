@@ -188,7 +188,7 @@ def main() -> None:
         try:
             return (datetime.now() - datetime.strptime(x, "%d/%m/%Y")) >= timedelta(days=DELAY*30)
         except Exception:
-            return False
+            return True
 
     if data is not None: # Fetching the data succeeded
         for activity in ACTIVITIES:
