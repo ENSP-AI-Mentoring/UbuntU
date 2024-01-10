@@ -171,7 +171,8 @@ def main() -> None:
 
     # Get the information of the members
     # Raw URL of the Google Sheet containing the information of the members
-    members_sheet_url = "https://docs.google.com/spreadsheets/d/12iwGURrqjezAuqI96fv16skKExkFY5WBloX-2iIKL5g/edit#gid=0"
+    members_sheet_url = os.getenv('MEMBERS_SHEET_URL')
+
     personal_info_columns = ["emails", "github username"]
 
     participation_colmun_from_activity = lambda activity : f"{activity}_last_participation"
