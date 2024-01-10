@@ -5,7 +5,8 @@ from typing import List, Dict, Optional
 import re
 from datetime import datetime, timedelta
 import os
-from dotenv import load_dotenv
+
+# from dotenv import load_dotenv
 import logging
 import tempfile
 import argparse
