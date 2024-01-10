@@ -14,7 +14,7 @@ logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
 )
 
-load_dotenv()
+# load_dotenv()
 
 
 def convert_google_sheet_url(url: str) -> str:
