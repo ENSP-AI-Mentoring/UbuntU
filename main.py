@@ -165,9 +165,9 @@ def main() -> None:
     random.seed(seed + salt)
     np.random.seed(seed + salt)
 
-    DELAY = 0.2 # Number of months after which we are included in the draw again afer a participation
+    DELAY = 3 # Number of months after which we are included in the draw again afer a participation
     ACTIVITIES = ["presentation"] # ["presentation", "article"]
-    NB_OF_MEMBERS_TO_DRAW = 1
+    NB_OF_MEMBERS_TO_DRAW = 3
 
     # Get the information of the members
     # Raw URL of the Google Sheet containing the information of the members
@@ -181,10 +181,19 @@ def main() -> None:
 
     data = fetch_data(members_sheet_url, personal_info_columns+participation_columns)
 
+    def is_drawable(x):
+        """
+        Function to check if a person is drawable for the current draw
+        """
+        try:
+            return (datetime.now() - datetime.strptime(x, "%d/%m/%Y")) >= timedelta(days=DELAY*30)
+        except Exception:
+            return False
+
     if data is not None: # Fetching the data succeeded
         for activity in ACTIVITIES:
             #create  a column to indicate if we can draw each person or not for the activity
-            data[activity_drawable_column(activity)] = data[participation_colmun_from_activity(activity)].apply(lambda x: (datetime.now() - datetime.strptime(x, "%d/%m/%Y")) >= timedelta(days=DELAY*30))
+            data[activity_drawable_column(activity)] = data[participation_colmun_from_activity(activity)].apply(lambda x: is_drawable(x))
 
             candidates_df = data[data[activity_drawable_column(activity)] == True]
 
