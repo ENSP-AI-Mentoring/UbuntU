@@ -299,6 +299,6 @@ if __name__ == "__main__":
     args = vars(parser.parse_args())  # Converts to  dict
 
     if args["members_sheet_url"] is None:
-        args["members_sheet_url"] = str(os.getenv("MEMBERS_SHEET_URL"))
+        args["members_sheet_url"] = str(os.environ["MEMBERS_SHEET_URL"])
         logging.info(f"Defaulting to OS {args['members_sheet_url']}")
     main(args)
