@@ -230,9 +230,6 @@ def main(args: Dict) -> None:
         # ].apply(lambda x: bool(is_drawable(x)))
 
         candidates_df = data  # data[data[activity_drawable_column(activity)] == True]
-
-        logging.info(candidates_df)
-
         email_list = candidates_df["emails"].values
 
         # Shuffle the email list based on the seed value
@@ -300,5 +297,5 @@ if __name__ == "__main__":
 
     if args["members_sheet_url"] is None:
         args["members_sheet_url"] = str(os.environ["MEMBERS_SHEET_URL"])
-        logging.info(f"Defaulting to OS {args['members_sheet_url']}")
+        logging.info(f"Defaulting to environment variable")
     main(args)
