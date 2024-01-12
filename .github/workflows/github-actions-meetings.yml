@@ -24,7 +24,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_REPO: ${{ github.repository }}
-        TITLE: "ENSPY AI : We Value Your Input ${{ env.user1 }}"
+        TITLE: "ENSPY AI [Meeting]: ${{ env.user1 }}, we want to hear you!"
         ASSIGNEES: nprime496 #KameniAlexNea,nprime496,1001pepi
         LABELS: meeting
         BODY: |
