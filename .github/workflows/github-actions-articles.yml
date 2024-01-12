@@ -25,7 +25,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_REPO: ${{ github.repository }}
         TITLE: "ENSPY AI [Article] : ${{ env.user1 }}, let's share your insights!"
-        ASSIGNEES: nprime496 #KameniAlexNea,nprime496,1001pepi
+        ASSIGNEES: KameniAlexNea,nprime496,1001pepi
         LABELS: article
         BODY: |
           
