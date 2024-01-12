@@ -24,20 +24,18 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_REPO: ${{ github.repository }}
-        TITLE: "ENSPY AI : We Value Your Input"
-        ASSIGNEES: KameniAlexNea,nprime496,1001pepi
+        TITLE: "ENSPY AI : We Value Your Input ${{ env.user1 }}"
+        ASSIGNEES: nprime496 #KameniAlexNea,nprime496,1001pepi
         LABELS: weekly sync,docs-team
         BODY: |
           
-          Hello @${{ env.user1 }},
+          Hello ${{ env.user1 }},
 
-          We're pleased to announce that you've been selected for an exciting opportunity within our community! As a valued member, we invite you to share your expertise by choosing to either write an article this week or deliver a presentation on a topic of your interest.
+          We're pleased to announce that you've been selected for an exciting opportunity within our community! As a valued member, we invite you to share your expertise by writing an article on a topic of interest.
           
-          Please **let us know your preference by responding in the comments below, including your availability, preferred activity, and the topic** you'd like to share with us. We are eagerly looking forward to your participation and the unique insights you will contribute to our community.
+          Please **let us know your preference by responding in the comments below, indicating whether you are available and your topic of choice** you'd like to share with us. We will respond to validate needed details. We are eagerly looking forward to your participation and the unique insights you will contribute to our community.
           
-          Thank you for being a vital part of our community's journey.
-          
-          For more information, please visit [url].
+          Thank you for being a vital part of our community's journey. For more information about this process and details, please visit [url].
           
           Best Regards,
           
