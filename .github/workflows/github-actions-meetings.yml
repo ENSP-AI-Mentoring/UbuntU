@@ -16,7 +16,7 @@ jobs:
       with:
         python-version: '3.8'
     - run: pip install numpy pandas python-dotenv argparse
-    - run: python main.py
+    - run: python main.py  --column_to_check availability_meeting
       env:
         MEMBERS_SHEET_URL: ${{ secrets.MEMBERS_SHEET_URL }}
     - name: Create team sync issue
