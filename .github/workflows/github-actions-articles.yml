@@ -26,7 +26,7 @@ jobs:
         GH_REPO: ${{ github.repository }}
         TITLE: "ENSPY AI : We Value Your Input ${{ env.user1 }}"
         ASSIGNEES: nprime496 #KameniAlexNea,nprime496,1001pepi
-        LABELS: weekly sync,docs-team
+        LABELS: article
         BODY: |
           
           Hello ${{ env.user1 }},
