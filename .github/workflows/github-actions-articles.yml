@@ -20,7 +20,7 @@ jobs:
       env:
         MEMBERS_SHEET_URL: ${{ secrets.MEMBERS_SHEET_URL }}
     - name: Create team sync issue
-      run: gh issue create --title "$TITLE" --assignee "$ASSIGNEES"  --body "$BODY"
+      run: gh issue create --title "$TITLE" --assignee "$ASSIGNEES"  --body "$BODY"  --label "$LABELS"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GH_REPO: ${{ github.repository }}
