@@ -63,7 +63,7 @@ def fetch_data_from_url(url: str, columns: List[str]) -> Optional[pd.DataFrame]:
         df = pd.read_csv(new_url)
         return df[columns].dropna()
     except Exception as e:
-        print(f"Error when fetching the data: {e}")
+        logging.error(f"Error when fetching the data: {e}")
         return None
 
 
@@ -110,7 +110,7 @@ def set_emails_probabilities(
     n_usable = len(usable_emails)
     n_total = len(email_list)
 
-    print(f"There are {n_usable} usable candidates out of {n_total} total.")
+    logging.info(f"There are {n_usable} usable candidates out of {n_total} total.")
 
     # Assigning probabilities
     email_probabilities = {}
