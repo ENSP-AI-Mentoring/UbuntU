@@ -1,7 +1,7 @@
 name: Pick_some_member
 on: 
-  schedule:
-    - cron: '42 10 * * mon' # Every monday at 10:42
+  #schedule:
+  #  - cron: '42 10 * * mon' # Every monday at 10:42
   workflow_dispatch:
 
 
