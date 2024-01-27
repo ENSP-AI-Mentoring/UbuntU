@@ -31,9 +31,9 @@ jobs:
           
           Hello ${{ env.user1 }},
 
-          We're pleased to announce that you've been selected for an exciting opportunity within our community! As a valued member, we invite you to share your expertise by hosting on a topic of interest.
-          
-          Please **let us know your preference by responding in the comments below, indicating whether you are available and your topic of choice** you'd like to share with us. We will respond to validate needed details. We are eagerly looking forward to your participation and the unique insights you will contribute to our community.
+          We're pleased to announce that you've been selected for an exciting opportunity within our community! As a valued member, we invite you to share your expertise by hosting a meeting on a topic of interest.
+
+          Please let us know your response, indicating whether you are available and your topic of choice you'd like to share with us. We will respond to validate needed details. We are eagerly looking forward to your participation and the unique insights you will contribute to our community.          
           
           Thank you for being a vital part of our community's journey. For more information about this process and details, please visit [url].
                     
