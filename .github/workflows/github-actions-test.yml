@@ -1,0 +1,46 @@
+name: Pick_some_member
+on: 
+  schedule:
+    - cron: '42 10 * * mon' # Every monday at 10:42
+  workflow_dispatch:
+
+
+jobs:
+  job1:
+    name: Debug
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.8'
+    - run: pip install numpy pandas python-dotenv argparse
+    - run: python main.py --column_to_check availability_article
+      env:
+        MEMBERS_SHEET_URL: ${{ secrets.MEMBERS_SHEET_URL }}
+    - name: Create team sync issue
+      run: gh issue create --title "$TITLE"   --body "$BODY"  --label "$LABELS" # --assignee "$ASSIGNEES"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_REPO: ${{ github.repository }}
+        TITLE: "ENSPY AI [Article] : ${{ env.user1 }}, let's share your insights!"
+        ASSIGNEES: 1001pepi,hafro05
+        LABELS: article
+        BODY: |
+          
+          Hello ${{ env.user1 }},
+
+          We're pleased to announce that you've been selected for an exciting opportunity within our community! As a valued member, we invite you to share your expertise by writing an article on a topic of interest.
+
+          Please let us know your response, indicating whether you are available and your topic of choice you'd like to share with us. We will respond to validate needed details. We are eagerly looking forward to your participation and the unique insights you will contribute to our community.          
+          
+          Thank you for being a vital part of our community's journey. For more information about this process and details, please take a look at [this article](https://medium.com/@1001pepi/random-selection-of-members-for-activities-planning-7b373743d4fb).
+          
+          Best Regards,
+          
+          @ENSP-AI-Mentoring
+        PINNED: false
+        CLOSE_PREVIOUS: false
+
+
